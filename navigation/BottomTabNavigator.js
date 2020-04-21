@@ -8,6 +8,18 @@ import LinksScreen from '../screens/LinksScreen';
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
+const backgroundColor = '#1F232E';
+
+const tabBarOptions = {
+  activeBackgroundColor: backgroundColor,
+  inactiveBackgroundColor: backgroundColor,
+  style: {
+    height: 64,
+    paddingBottom: 4,
+    backgroundColor: backgroundColor,
+  },
+};
+
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
   // currently active tab. Learn more in the documentation:
@@ -15,7 +27,11 @@ export default function BottomTabNavigator({ navigation, route }) {
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
 
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+    <BottomTab.Navigator
+      initialRouteName={INITIAL_ROUTE_NAME}
+      tabBarOptions={tabBarOptions}
+      style={{ paddingTop: 15 }}
+    >
       <BottomTab.Screen
         name="Home"
         component={HomeScreen}
