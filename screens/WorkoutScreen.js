@@ -2,6 +2,7 @@ import * as WebBrowser from 'expo-web-browser';
 import React, {
   useState,
   useEffect,
+  useRef,
 } from 'react';
 import { AsyncStorage, ImageBackground, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -15,14 +16,24 @@ const itemSize = dimensions.width * 0.12;
 const rounds = 3;
 const pauseTime = 30;
 
+
 const WorkoutScreen = ({ navigation }) => {
+  const d = new Date();
+
   const [startTime, setStartTime] = useState(null);
   const [routine, setRoutine] = useState([]);
   const [exerciseNumber, setExerciseNumber] = useState(0);
   const [pausing, setPausing] = useState(false);
   const [time, setTime] = useState(0);
+  const seed = useRef(d.getFullYear() + d.getMonth() + d.getDate());
 
   const exercise = routine[exerciseNumber];
+
+  const getRandom = () => {
+    const result = Math.sin(seed.current++) * 10000;
+
+    return result - Math.floor(result);
+  };
 
   const proceed = () => {
     if (pausing) {
@@ -59,7 +70,7 @@ const WorkoutScreen = ({ navigation }) => {
 
     const generatedRoutine = [...new Array(rounds)].reduce((arr) => [
       ...arr,
-      ...Object.values(exercises).map((options) => options[Math.floor(Math.random() * options.length)]),
+      ...Object.values(exercises).map((options) => options[Math.floor(getRandom() * options.length)]),
     ], []);
 
     setRoutine(generatedRoutine);
