@@ -1,15 +1,32 @@
 import * as WebBrowser from 'expo-web-browser';
-import * as React from 'react';
-import { ImageBackground, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+} from 'react';
+import { AsyncStorage, ImageBackground, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useIsFocused } from '@react-navigation/native';
 import { MonoText } from '../components/StyledText';
-import workout from '../assets/images/workout.jpg';
+import workout from '../assets/images/workout-woman.jpg';
 import shape from '../assets/images/shape.png';
 
 const dimensions = Dimensions.get('window');
-const itemSize = dimensions.width * 0.12;
+const itemSize = dimensions.width * 0.15;
 
-export default function HomeScreen({ navigation }) {
+const HomeScreen = ({ navigation }) => {
+  const isFocused = useIsFocused();
+  const [workouts, setWorkouts] = useState([]);
+
+  useEffect(() => {
+    const updateWorkouts = async () => {
+      const workoutsItem = JSON.parse(await AsyncStorage.getItem('workouts')) || [];
+      setWorkouts(workoutsItem);
+    };
+
+    updateWorkouts();
+  }, [isFocused]);
+
   return (
     <View style={styles.container}>
       <Image
@@ -31,7 +48,7 @@ export default function HomeScreen({ navigation }) {
                 const number = (row * 6) + (column + 1);
                 let tint;
 
-                const next = 25;
+                const next = workouts.length + 1;
 
                 if (number < next) {
                   tint = 'green';
@@ -47,6 +64,7 @@ export default function HomeScreen({ navigation }) {
                       source={shape}
                       style={styles.innerItem}
                       tintColor={tint}
+                      resizeMode="contain"
                     >
                       <Text style={styles.itemText}>{number}</Text>
                     </ImageBackground>
@@ -65,10 +83,6 @@ export default function HomeScreen({ navigation }) {
       </View>
     </View>
   );
-}
-
-HomeScreen.navigationOptions = {
-  header: null,
 };
 
 const styles = StyleSheet.create({
@@ -137,3 +151,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+export default HomeScreen;

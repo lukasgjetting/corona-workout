@@ -1,0 +1,26 @@
+[
+	{
+		"name": "Squat",
+		"reps": 12,
+	},
+	{
+		"name": "Dip",
+		"reps": 10,
+	},
+	{
+		"name": "Chest press",
+		"reps": 8,
+	},
+	{
+		"name": "Push up",
+		"reps": 10,
+	},
+	{
+		"name": "Pull up",
+		"reps": 6,
+	},
+	{
+		"name": "Face pull",
+		"reps": 16,
+	},
+]

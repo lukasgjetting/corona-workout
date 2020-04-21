@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from './screens/HomeScreen';
+import WorkoutScreen from './screens/WorkoutScreen';
 import useLinking from './navigation/useLinking';
 
 const Stack = createStackNavigator();
@@ -54,6 +55,11 @@ export default function App(props) {
             <Stack.Screen
               name="Root"
               component={HomeScreen}
+              options={{ header: () => null }}
+            />
+            <Stack.Screen
+              name="Workout"
+              component={WorkoutScreen}
               options={{ header: () => null }}
             />
           </Stack.Navigator>
