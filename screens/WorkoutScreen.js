@@ -72,7 +72,7 @@ const WorkoutScreen = ({ navigation }) => {
       const d = new Date();
       timeout = setTimeout(() => {
         setTime(time - 1);
-      }, 20);
+      }, 2045);
     }
 
     if (time === 0 && pausing) {
@@ -98,6 +98,9 @@ const WorkoutScreen = ({ navigation }) => {
             <>
               <Text style={styles.exercise}>Pausing</Text>
               <Text style={styles.reps}>{time}</Text>
+              {routine[exerciseNumber + 1] != null && (
+                <Text style={styles.upNext}>Up next: {routine[exerciseNumber + 1].name}</Text>
+              )}
             </>
           ) : exercise == null ? (
             <>
@@ -168,6 +171,11 @@ const styles = StyleSheet.create({
   reps: {
     color: 'white',
     fontSize: 38,
+  },
+  upNext: {
+    color: 'white',
+    marginTop: 16,
+    fontSize: 24,
   },
   button: {
     backgroundColor: '#3A44B2',
