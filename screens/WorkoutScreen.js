@@ -83,7 +83,7 @@ const WorkoutScreen = ({ navigation }) => {
       const d = new Date();
       timeout = setTimeout(() => {
         setTime(time - 1);
-      }, 2045);
+      }, 1000);
     }
 
     if (time === 0 && pausing) {
