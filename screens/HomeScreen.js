@@ -4,7 +4,7 @@ import React, {
   useCallback,
   useEffect,
 } from 'react';
-import { AsyncStorage, ImageBackground, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
+import { Alert, AsyncStorage, ImageBackground, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useIsFocused } from '@react-navigation/native';
 import { MonoText } from '../components/StyledText';
@@ -27,6 +27,23 @@ const HomeScreen = ({ navigation }) => {
     updateWorkouts();
   }, [isFocused]);
 
+  const reset = () => {
+    Alert.alert(
+      'Really delete?',
+      'Are you sure you want to delete data?',
+      [
+        { text: 'Nah' },
+        {
+          text: 'Yes, please',
+          onPress: async () => {
+            AsyncStorage.removeItem('workouts');
+            setWorkouts([]);
+          },
+        },
+      ],
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -35,9 +52,14 @@ const HomeScreen = ({ navigation }) => {
         resizeMode="cover"
       />
       <View style={styles.overlay}>
-        <Text style={styles.present}>
-          Emse and Luki present
-        </Text>
+        <TouchableOpacity
+          onLongPress={reset}
+          delayLongPress={2500}
+        >
+          <Text style={styles.present}>
+            Emse and Luki present
+          </Text>
+        </TouchableOpacity>
         <Text style={styles.title}>
           Corona Workout Challenge
         </Text>
