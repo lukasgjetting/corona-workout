@@ -7,15 +7,17 @@ import { AsyncStorage, ImageBackground, Image, Platform, StyleSheet, Text, Touch
 import { ScrollView } from 'react-native-gesture-handler';
 import { MonoText } from '../components/StyledText';
 import workout from '../assets/images/workout-man.jpg';
-import routine from '../assets/routines/routine1.json';
+import exercises from '../assets/json/exercises.json';
 
 const dimensions = Dimensions.get('window');
 const itemSize = dimensions.width * 0.12;
 
-const pauseTime = 5;
+const rounds = 3;
+const pauseTime = 30;
 
 const WorkoutScreen = ({ navigation }) => {
   const [startTime, setStartTime] = useState(null);
+  const [routine, setRoutine] = useState([]);
   const [exerciseNumber, setExerciseNumber] = useState(0);
   const [pausing, setPausing] = useState(false);
   const [time, setTime] = useState(0);
@@ -54,6 +56,13 @@ const WorkoutScreen = ({ navigation }) => {
 
   useEffect(() => {
     setStartTime(Date.now());
+
+    const generatedRoutine = [...new Array(rounds)].reduce((arr) => [
+      ...arr,
+      ...Object.values(exercises).map((options) => options[Math.floor(Math.random() * options.length)]),
+    ], []);
+
+    setRoutine(generatedRoutine);
   }, []);
 
   useEffect(() => {
@@ -63,7 +72,7 @@ const WorkoutScreen = ({ navigation }) => {
       const d = new Date();
       timeout = setTimeout(() => {
         setTime(time - 1);
-      }, 2045);
+      }, 20);
     }
 
     if (time === 0 && pausing) {
@@ -154,6 +163,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     fontWeight: 'bold',
     letterSpacing: 1,
+    textAlign: 'center',
   },
   reps: {
     color: 'white',

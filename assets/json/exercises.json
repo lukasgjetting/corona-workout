@@ -1,0 +1,64 @@
+{
+	"arms": [
+		{
+			"name": "Push ups",
+			"reps": 15,
+		},
+		{
+			"name": "Cobra",
+			"reps": 20,
+		},
+		{
+			"name": "Tap shoulders",
+			"reps": 20,
+		}
+	],
+	"legs": [
+		{
+			"name": "Jump squats",
+			"reps": 20,
+		},
+		{
+			"name": "Single leg bridge",
+			"reps": "10 x 2",
+		},
+		{
+			"name": "Fire hydrant straight leg",
+			"reps": "10 x 2",
+		},
+		{
+			"name": "Plié squat calf raise",
+			"reps": 20,
+		},
+		{
+			"name": "Reverse lunges knee lift",
+			"reps": "10 x 2",
+		},
+		{
+			"name": "Wall sit",
+			"reps": "45 second",
+		}
+	],
+	"core": [
+		{
+			"name": "Planke",
+			"reps": "45 second",
+		},
+		{
+			"name": "Raise legs",
+			"reps": 15,
+		},
+		{
+			"name": "Raised leg lift back",
+			"reps": 20,
+		},
+		{
+			"name": "Russian twist",
+			"reps": 20,
+		},
+		{
+			"name": "Wipers",
+			"reps": 20,
+		},
+	]
+}
