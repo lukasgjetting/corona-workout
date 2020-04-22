@@ -98,10 +98,22 @@ const WorkoutScreen = ({ navigation }) => {
   useEffect(() => {
     setStartTime(Date.now());
 
-    const generatedRoutine = [...new Array(rounds)].reduce((arr) => [
-      ...arr,
-      ...Object.values(exercises).map((options) => options[Math.floor(getRandom() * options.length)]),
-    ], []);
+    const generatedRoutine = [];
+
+    [...new Array(rounds)].forEach((x, round) => Object.values(exercises).forEach((options) => {
+      while (true) {
+        const index = Math.floor(getRandom() * options.length);
+        const exercise = options[index];
+
+        // If exercise is not in routine
+        // OR if there are no not-included exercises left
+        // Add the exercise and break out of loop
+        if (!generatedRoutine.includes(exercise) || round + 1 > options.length) {
+          generatedRoutine.push(exercise);
+          break;
+        }
+      }
+    }));
 
     setRoutine(generatedRoutine);
   }, []);
