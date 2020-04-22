@@ -9,11 +9,11 @@ import { loadAsync } from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './screens/HomeScreen';
-import WorkoutScreen from './screens/WorkoutScreen';
-import useLinking from './navigation/useLinking';
+import HomeScreen from './src/screens/HomeScreen';
+import WorkoutScreen from './src/screens/WorkoutScreen';
+import useLinking from './src/navigation/useLinking';
 
-const spaceMonoFont = require('../assets/fonts/SpaceMono-Regular.ttf');
+const spaceMonoFont = require('./assets/fonts/SpaceMono-Regular.ttf');
 
 const Stack = createStackNavigator();
 
