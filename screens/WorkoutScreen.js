@@ -4,7 +4,7 @@ import React, {
   useEffect,
   useRef,
 } from 'react';
-import { AsyncStorage, ImageBackground, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
+import { Alert, BackHandler, AsyncStorage, ImageBackground, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { MonoText } from '../components/StyledText';
 import workout from '../assets/images/workout-man.jpg';
@@ -70,6 +70,30 @@ const WorkoutScreen = ({ navigation }) => {
       console.error(e);
     }
   };
+
+  useEffect(() => {
+    const handler = () => {
+      Alert.alert(
+        'Cancel workout?',
+        'Are you sure you want to go back?',
+        [
+          { text: 'Nah' },
+          {
+            text: 'Yes, please',
+            onPress: () => navigation.goBack(),
+          },
+        ],
+      );
+
+      return true;
+    };
+
+    BackHandler.addEventListener('hardwareBackPress', handler);
+
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handler);
+    };
+  }, []);
 
   useEffect(() => {
     setStartTime(Date.now());
