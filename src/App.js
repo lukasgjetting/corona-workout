@@ -1,7 +1,9 @@
 import React, {
   useEffect,
 } from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import {
+  Platform, StatusBar, StyleSheet, View,
+} from 'react-native';
 import { SplashScreen } from 'expo';
 import { loadAsync } from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';

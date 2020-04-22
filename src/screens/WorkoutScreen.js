@@ -4,11 +4,13 @@ import React, {
   useEffect,
   useRef,
 } from 'react';
-import { Alert, BackHandler, AsyncStorage, ImageBackground, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
+import {
+  Alert, BackHandler, AsyncStorage, ImageBackground, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Dimensions,
+} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { MonoText } from '../components/StyledText';
-import workout from '../assets/images/workout-man.jpg';
-import exercises from '../assets/json/exercises.json';
+import workout from '../../assets/images/workout-man.jpg';
+import exercises from '../../assets/json/exercises.json';
 
 const dimensions = Dimensions.get('window');
 const itemSize = dimensions.width * 0.12;
@@ -65,7 +67,7 @@ const WorkoutScreen = ({ navigation }) => {
 
       navigation.goBack();
     } catch (e) {
-      alert('Could not save \n' + e.message);
+      alert(`Could not save \n${e.message}`);
 
       console.error(e);
     }
@@ -152,7 +154,10 @@ const WorkoutScreen = ({ navigation }) => {
               <Text style={styles.exercise}>Pausing</Text>
               <Text style={styles.reps}>{time}</Text>
               {routine[exerciseNumber + 1] != null && (
-                <Text style={styles.upNext}>Up next: {routine[exerciseNumber + 1].name}</Text>
+                <Text style={styles.upNext}>
+                  Up next:
+                  {routine[exerciseNumber + 1].name}
+                </Text>
               )}
             </>
           ) : exercise == null ? (
@@ -166,7 +171,9 @@ const WorkoutScreen = ({ navigation }) => {
             <>
               <Text style={styles.exercise}>{exercise.name}</Text>
               <Text style={styles.reps}>
-                {exercise.reps} reps
+                {exercise.reps}
+                {' '}
+                reps
               </Text>
               <TouchableOpacity onPress={proceed} style={styles.button}>
                 <Text style={styles.buttonText}>Proceed</Text>

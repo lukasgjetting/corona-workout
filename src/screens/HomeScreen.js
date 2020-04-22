@@ -3,12 +3,14 @@ import React, {
   useCallback,
   useEffect,
 } from 'react';
-import { Alert, AsyncStorage, ImageBackground, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
+import {
+  Alert, AsyncStorage, ImageBackground, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Dimensions,
+} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useIsFocused } from '@react-navigation/native';
 import { MonoText } from '../components/StyledText';
-import workout from '../assets/images/workout-woman.jpg';
-import shape from '../assets/images/shape.png';
+import workout from '../../assets/images/workout-woman.jpg';
+import shape from '../../assets/images/shape.png';
 
 const dimensions = Dimensions.get('window');
 const itemSize = dimensions.width * 0.15;
