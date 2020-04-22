@@ -193,6 +193,7 @@ const styles = StyleSheet.create({
     color: 'white',
     marginTop: 16,
     fontSize: 24,
+    textAlign: 'center',
   },
   button: {
     backgroundColor: '#3A44B2',
