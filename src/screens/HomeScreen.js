@@ -1,14 +1,19 @@
 import React, {
   useState,
-  useCallback,
   useEffect,
 } from 'react';
 import {
-  Alert, AsyncStorage, ImageBackground, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Dimensions,
+  Alert,
+  AsyncStorage,
+  ImageBackground,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Dimensions,
 } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 import { useIsFocused } from '@react-navigation/native';
-import { MonoText } from '../components/StyledText';
 import workout from '../../assets/images/workout-woman.jpg';
 import shape from '../../assets/images/shape.png';
 

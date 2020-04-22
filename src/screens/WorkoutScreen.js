@@ -1,19 +1,20 @@
-import * as WebBrowser from 'expo-web-browser';
 import React, {
   useState,
   useEffect,
   useRef,
 } from 'react';
 import {
-  Alert, BackHandler, AsyncStorage, ImageBackground, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Dimensions,
+  Alert,
+  BackHandler,
+  AsyncStorage,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { MonoText } from '../components/StyledText';
 import workout from '../../assets/images/workout-man.jpg';
 import exercises from '../../assets/json/exercises.json';
-
-const dimensions = Dimensions.get('window');
-const itemSize = dimensions.width * 0.12;
 
 const rounds = 3;
 const pauseTime = 30;
@@ -32,7 +33,8 @@ const WorkoutScreen = ({ navigation }) => {
   const exercise = routine[exerciseNumber];
 
   const getRandom = () => {
-    const result = Math.sin(seed.current++) * 10000;
+    const result = Math.sin(seed.current) * 10000;
+    seed.current += 1;
 
     return result - Math.floor(result);
   };
@@ -67,7 +69,7 @@ const WorkoutScreen = ({ navigation }) => {
 
       navigation.goBack();
     } catch (e) {
-      alert(`Could not save \n${e.message}`);
+      Alert.alert('Could not save', e.message);
 
       console.error(e);
     }
@@ -105,13 +107,12 @@ const WorkoutScreen = ({ navigation }) => {
     [...new Array(rounds)].forEach((x, round) => Object.values(exercises).forEach((options) => {
       while (true) {
         const index = Math.floor(getRandom() * options.length);
-        const exercise = options[index];
 
         // If exercise is not in routine
         // OR if there are no not-included exercises left
         // Add the exercise and break out of loop
-        if (!generatedRoutine.includes(exercise) || round + 1 > options.length) {
-          generatedRoutine.push(exercise);
+        if (!generatedRoutine.includes(options[index]) || round + 1 > options.length) {
+          generatedRoutine.push(options[index]);
           break;
         }
       }
@@ -124,7 +125,6 @@ const WorkoutScreen = ({ navigation }) => {
     let timeout;
 
     if (time > 0) {
-      const d = new Date();
       timeout = setTimeout(() => {
         setTime(time - 1);
       }, 1000);
@@ -149,6 +149,7 @@ const WorkoutScreen = ({ navigation }) => {
       <View style={styles.overlay}>
         <Text style={styles.title}>Workout</Text>
         <View style={styles.content}>
+          {/* eslint-disable no-nested-ternary */}
           {pausing ? (
             <>
               <Text style={styles.exercise}>Pausing</Text>

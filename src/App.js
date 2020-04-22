@@ -13,9 +13,11 @@ import HomeScreen from './screens/HomeScreen';
 import WorkoutScreen from './screens/WorkoutScreen';
 import useLinking from './navigation/useLinking';
 
+const spaceMonoFont = require('../assets/fonts/SpaceMono-Regular.ttf');
+
 const Stack = createStackNavigator();
 
-export default function App(props) {
+const App = ({ skipLoadingScreen }) => {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
   const [initialNavigationState, setInitialNavigationState] = React.useState();
   const containerRef = React.useRef();
@@ -33,7 +35,7 @@ export default function App(props) {
         // Load fonts
         await loadAsync({
           ...Ionicons.font,
-          'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+          'space-mono': spaceMonoFont,
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service
@@ -47,7 +49,7 @@ export default function App(props) {
     loadResourcesAndDataAsync();
   }, []);
 
-  if (!isLoadingComplete && !props.skipLoadingScreen) {
+  if (!isLoadingComplete && !skipLoadingScreen) {
     return null;
   }
 
@@ -70,7 +72,7 @@ export default function App(props) {
       </NavigationContainer>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -78,3 +80,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+export default App;
