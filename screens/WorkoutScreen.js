@@ -36,6 +36,12 @@ const WorkoutScreen = ({ navigation }) => {
   };
 
   const proceed = () => {
+    // If we're at the last exercise, don't bother pausing before proceeding
+    if (exerciseNumber === routine.length - 1) {
+      setExerciseNumber(exerciseNumber + 1);
+      return;
+    }
+
     if (pausing) {
       setExerciseNumber(exerciseNumber + 1);
     } else {
