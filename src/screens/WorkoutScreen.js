@@ -11,7 +11,9 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
+  Modal,
 } from 'react-native';
 import workout from '../../assets/images/workout-man.jpg';
 import exercises from '../../assets/json/exercises.json';
@@ -25,6 +27,7 @@ const WorkoutScreen = ({ navigation }) => {
 
   const [startTime, setStartTime] = useState(null);
   const [routine, setRoutine] = useState([]);
+  const [timerOpen, setTimerOpen] = useState(false);
   const [exerciseNumber, setExerciseNumber] = useState(0);
   const [pausing, setPausing] = useState(false);
   const [time, setTime] = useState(0);
@@ -175,6 +178,14 @@ const WorkoutScreen = ({ navigation }) => {
                 {' '}
                 {exercise.repType === 'time' ? 'seconds' : 'reps'}
               </Text>
+              {exercise.repType === 'time' && (
+                <TouchableOpacity
+                  onPress={() => setTimerOpen(true)}
+                  style={styles.timerButton}
+                >
+                  <Text style={styles.timerButtonText}>Open timer</Text>
+                </TouchableOpacity>
+              )}
               <TouchableOpacity onPress={proceed} style={styles.button}>
                 <Text style={styles.buttonText}>Proceed</Text>
               </TouchableOpacity>
@@ -182,6 +193,27 @@ const WorkoutScreen = ({ navigation }) => {
           )}
         </View>
       </View>
+      <Modal
+        visible={timerOpen}
+        onDismiss={() => setTimerOpen(false)}
+        onRequestClose={() => setTimerOpen(false)}
+        transparent
+        animationType="slide"
+      >
+        <TouchableWithoutFeedback onPress={() => setTimerOpen(false)}>
+          <View style={styles.timerWrapper}>
+            <View style={styles.timerInner}>
+              <Text style={styles.timerTime}>{time}</Text>
+              <TouchableOpacity
+                style={[styles.button, styles.secondary]}
+                onPress={() => setTime(exercise.reps)}
+              >
+                <Text style={styles.timerText}>Start timer</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
     </View>
   );
 };
@@ -237,6 +269,43 @@ const styles = StyleSheet.create({
     marginTop: 16,
     fontSize: 24,
     textAlign: 'center',
+  },
+  timerButton: {
+    marginTop: 16,
+    backgroundColor: 'gray',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+  },
+  timerButtonText: {
+    color: 'white',
+    fontSize: 18,
+  },
+  timerWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#0008',
+  },
+  timerInner: {
+    paddingVertical: 32,
+    paddingHorizontal: 64,
+    borderRadius: 8,
+    backgroundColor: '#1F232E',
+    alignItems: 'center',
+  },
+  timerTime: {
+    fontSize: 128,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  timerText: {
+    color: 'white',
+    fontSize: 18,
+  },
+  secondary: {
+    alignSelf: 'center',
+    marginTop: 8,
   },
   button: {
     backgroundColor: '#3A44B2',
