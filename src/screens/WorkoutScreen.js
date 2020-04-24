@@ -156,8 +156,7 @@ const WorkoutScreen = ({ navigation }) => {
               <Text style={styles.reps}>{time}</Text>
               {routine[exerciseNumber + 1] != null && (
                 <Text style={styles.upNext}>
-                  Up next:
-                  {routine[exerciseNumber + 1].name}
+                  {`Up next: ${routine[exerciseNumber + 1].name}`}
                 </Text>
               )}
             </>
