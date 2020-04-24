@@ -173,7 +173,7 @@ const WorkoutScreen = ({ navigation }) => {
               <Text style={styles.reps}>
                 {exercise.reps}
                 {' '}
-                reps
+                {exercise.repType === 'time' ? 'seconds' : 'reps'}
               </Text>
               <TouchableOpacity onPress={proceed} style={styles.button}>
                 <Text style={styles.buttonText}>Proceed</Text>

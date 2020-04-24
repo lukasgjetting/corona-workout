@@ -3,62 +3,76 @@
 		{
 			"name": "Push ups",
 			"reps": 15,
+			"repType": "reps"
 		},
 		{
 			"name": "Dips / Cobra",
 			"reps": 20,
+			"repType": "reps"
 		},
 		{
 			"name": "Tap shoulders",
 			"reps": 20,
+			"repType": "reps"
 		}
 	],
 	"legs": [
 		{
 			"name": "Jump squats",
 			"reps": 20,
+			"repType": "reps"
 		},
 		{
 			"name": "Single leg bridge",
 			"reps": "10 x 2",
+			"repType": "reps"
 		},
 		{
 			"name": "Fire hydrant straight leg",
 			"reps": "10 x 2",
+			"repType": "reps"
 		},
 		{
 			"name": "Plié squat calf raise",
 			"reps": 20,
+			"repType": "reps"
 		},
 		{
 			"name": "Reverse lunges knee lift",
 			"reps": "10 x 2",
+			"repType": "reps"
 		},
 		{
 			"name": "Wall sit",
-			"reps": "45 second",
+			"reps": 45,
+			"repType": "time"
 		}
 	],
 	"core": [
 		{
 			"name": "Plank",
-			"reps": "45 second",
+			"reps": 45,
+			"repType": "time"
 		},
 		{
 			"name": "Raise legs",
 			"reps": 15,
+			"repType": "reps"
 		},
 		{
 			"name": "Raised leg lift back",
 			"reps": 20,
+			"repType": "reps"
 		},
 		{
 			"name": "Russian twist",
 			"reps": 20,
+			"repType": "reps"
 		},
 		{
 			"name": "Wipers",
 			"reps": 20,
+			"repType": "reps"
 		},
 	]
 }

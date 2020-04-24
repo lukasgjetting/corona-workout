@@ -193,7 +193,7 @@ const HomeScreen = ({ navigation }) => {
                           {exercise.name}
                         </Text>
                         <Text style={styles.exerciseReps}>
-                          {`${exercise.reps} reps`}
+                          {`${exercise.reps} ${exercise.repType === 'time' ? 'seconds' : 'reps'}`}
                         </Text>
                       </View>
                     ))}
